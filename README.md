@@ -1,2 +1,2 @@
 # str-go
-Private stratum connector
+Private Go stratum connector

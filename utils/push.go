@@ -54,11 +54,11 @@ func mydb() *sql.DB {
 	return db
 }
 
-func Newblock(worker string, address string, miner string, wallet string, block string, bs uint64, nonce uint64) error {
+func Newblock(worker string, address string, miner string, wallet string, block string, bs uint64, nonce uint64, ci int32) error {
 	dcon := mydb()
 	timestamp := strconv.FormatInt(time.Now().UTC().UnixNano(), 10)
-	_, _ = dcon.Exec(`INSERT INTO pool_block (stamp,address,worker,miner,wallet,block,bs,nonce) VALUES (?,?,?,?,?,?,?,?)`,
-		timestamp, address, worker, miner, wallet, block, bs, nonce)
+	_, _ = dcon.Exec(`INSERT INTO pool_block (stamp,address,worker,miner,wallet,block,bs,nonce, coin) VALUES (?,?,?,?,?,?,?,?,?)`,
+		timestamp, address, worker, miner, wallet, block, bs, nonce, ci)
 	return nil
 }
 
